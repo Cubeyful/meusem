@@ -53,6 +53,10 @@ client.on('guildMemberAdd', (member) => {
     .setTimestamp()
     .setFooter('Member Joined')
   channel.send(embed);
+
+  if(member.bot) {
+    let role = message.guild.roles.find("name", "")
+  }
 });
 
 client.on("message", async (message) => {
@@ -61,10 +65,10 @@ client.on("message", async (message) => {
   let messageArray = message.content.split(" ");
   let args = messageArray.slice(1);
 
-  if(message.content == prefix + 'emit') {
-    if(message.author.id != '566692683838521364') return;
-    client.emit('guildMemberAdd', message.member || await message.guild.fetchMember(message.author));
-  }
+  // if(message.content == prefix + 'emit') {
+  //   if(message.author.id != '566692683838521364') return;
+  //   client.emit('guildMemberAdd', message.member || await message.guild.fetchMember(message.author));
+  // }
 
   client.setInterval((message) => {
     let channel = message.guild.channels.find("id", "584480936477851720")
