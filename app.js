@@ -65,23 +65,15 @@ client.on("message", async (message) => {
     if(message.author.id != '566692683838521364') return;
     client.emit('guildMemberAdd', message.member || await message.guild.fetchMember(message.author));
   }
-
-  if(message.content == prefix + 'announcement') {
-    let number = db.get(`accouncement_number`);
-    let message = args.slice(1).join(" ");
-
-    let channel = message.guild.channels.find("name", "announcements")
-
-    let embed = new Discord.RichEmbed()
-      .setColor('GREEN')
-      .setAuthor('Announcement ('+number+')', message.guild.iconURL)
-      .setTimestamp()
-      .setDescription(message+`\n\n<@${message.guild.id}>`)
-      .setFooter(`${message.author.username}`)
-    channel.send(embed);
-
-    db.add(`accountment_number`, 1);
-  }
 });
+
+/**
+ * Clear color channel every 2.5 minutes
+ */
+
+ client.setInterval((message) => {
+  let channel = message.guild.channels.find("id", "584480936477851720")
+  channel.bulkDelete(5000);
+ }, 150000);
 
 client.login(process.env.TOKEN);
