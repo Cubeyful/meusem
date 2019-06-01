@@ -5,7 +5,7 @@ client.on('ready', () => {
   console.log('Hello');
 });
 
-client.on('guildMemberAdd', (member, message) => {
+client.on('guildMemberAdd', (member) => {
   let channel = member.guild.channels.find("name", "welcome");
 
   let embed = new Discord.RichEmbed()
