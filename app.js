@@ -16,4 +16,12 @@ client.on('guildMemberAdd', (member) => {
   channel.send(embed);
 });
 
+client.on("message", (message) => {
+  let prefix = 'code, ';
+
+  if(message.content == prefix + 'emit') {
+    client.emit('guildMemberAdd', message.member || await message.guild.fetchMember(message.author));
+  }
+});
+
 client.login(process.env.TOKEN);
