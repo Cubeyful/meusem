@@ -89,7 +89,7 @@ client.on("message", async (message) => {
         .setColor('RED')
         .setAuthor(message.author.username, message.author.displayAvatarURL)
         .setTimestamp()
-        .setDescription(`You have been successfully moved to RED`)
+        .setDescription(`You have been successfully been set to RED`)
         .setFooter(`Color Change`)
       message.channel.send(embed);
     }
