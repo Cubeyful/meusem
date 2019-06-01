@@ -62,7 +62,37 @@ client.on("message", async (message) => {
   }
 
   if(message.content == prefix + 'red') {
-
+    let list = [
+      "white",
+      "black",
+      "blue",
+      "green",
+      "yellow"
+    ]
+    if(message.member.roles.some(r=>list.includes(r.name))) {
+      message.member.removeRole(r.id)
+      let role = message.guild.roles.find("name", "red")
+      if(!role) message.guild.createRole({name:'red',color:'red'});
+      message.member.addRole(role);
+      let embed = new Discord.RichEmbed()
+        .setColor('RED')
+        .setAuthor(message.author.username, message.author.displayAvatarURL)
+        .setTimestamp()
+        .setDescription(`You have been successfully moved to RED`)
+        .setFooter(`Color Change`)
+      message.channel.send(embed);
+    } else {
+      let role = message.guild.roles.find("name", "red")
+      if(!role) message.guild.createRole({name:'red',color:'red'});
+      message.member.addRole(role);
+      let embed = new Discord.RichEmbed()
+        .setColor('RED')
+        .setAuthor(message.author.username, message.author.displayAvatarURL)
+        .setTimestamp()
+        .setDescription(`You have been successfully moved to RED`)
+        .setFooter(`Color Change`)
+      message.channel.send(embed);
+    }
   }
 });
 
