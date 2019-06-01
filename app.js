@@ -3,6 +3,7 @@ const client = new Discord.Client();
 
 client.on('ready', () => {
   console.log('Hello');
+  client.user.setActivity('the precious code', { type: 'WATCHING' })
 });
 
 client.on('guildMemberAdd', (member) => {
