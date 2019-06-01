@@ -16,7 +16,7 @@ client.on('guildMemberAdd', (member) => {
   channel.send(embed);
 });
 
-client.on("message", (message) => {
+client.on("message", async (message) => {
   let prefix = 'code, ';
 
   if(message.content == prefix + 'emit') {
