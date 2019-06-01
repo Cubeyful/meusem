@@ -1,0 +1,29 @@
+{
+  "name": "meusem",
+  "version": "1.0.0-SNAP",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ascii-art": "^1.5.1",
+    "axios": "^0.18.0",
+    "better-sqlite-pool": "^0.2.2",
+    "canvas": "^2.5.0",
+    "cheerio": "^1.0.0-rc.3",
+    "discord.js": "^11.5.0",
+    "enmap": "^4.8.7",
+    "forever": "^1.0.0",
+    "forever-monitor": "^1.7.1",
+    "moment": "^2.24.0",
+    "node-superfetch": "^0.1.9",
+    "parse-ms": "^2.1.0",
+    "path": "^0.12.7",
+    "quick.db": "^7.0.0-b22",
+    "snekfetch": "^4.0.4"
+  }
+}
