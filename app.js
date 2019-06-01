@@ -65,15 +65,12 @@ client.on("message", async (message) => {
     if(message.author.id != '566692683838521364') return;
     client.emit('guildMemberAdd', message.member || await message.guild.fetchMember(message.author));
   }
+
+  client.setInterval((message) => {
+    let channel = message.guild.channels.find("id", "584480936477851720")
+    channel.bulkDelete(5000);
+   }, 150000/4);
+
 });
-
-/**
- * Clear color channel every 2.5 minutes
- */
-
- client.setInterval((message) => {
-  let channel = message.guild.channels.find("id", "584480936477851720")
-  channel.bulkDelete(5000);
- }, 150000);
 
 client.login(process.env.TOKEN);
