@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+const db = require('quick.db');
+
 var color = [
   "white",
   "red",
@@ -56,9 +58,29 @@ client.on('guildMemberAdd', (member) => {
 client.on("message", async (message) => {
   let prefix = 'code, ';
 
+  let messageArray = message.content.split(" ");
+  let args = messageArray.slice(1);
+
   if(message.content == prefix + 'emit') {
     if(message.author.id != '566692683838521364') return;
     client.emit('guildMemberAdd', message.member || await message.guild.fetchMember(message.author));
+  }
+
+  if(message.content == prefix + 'announcement') {
+    let number = db.get(`accouncement_number`);
+    let message = args.slice(1).join(" ");
+
+    let channel = message.guild.channels.find("name", "announcements")
+
+    let embed = new Discord.RichEmbed()
+      .setColor('GREEN')
+      .setAuthor('Announcement ('+number+')', message.guild.iconURL)
+      .setTimestamp()
+      .setDescription(message+`\n\n<@${message.guild.id}>`)
+      .setFooter(`${message.author.username}`)
+    channel.send(embed);
+
+    db.add(`accountment_number`, 1);
   }
 });
 
