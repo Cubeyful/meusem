@@ -75,6 +75,70 @@ client.on("message", async (message) => {
     channel.bulkDelete(5000);
    }, 150000/4);
 
+  if(message.content == 'application') {
+    let embed = new Discord.RichEmbed()
+      .setColor('YELLOW')
+      .setTimestamp()
+      .setFooter('Application Handler')
+      .setDescription(`1️⃣ Developer)\n2️⃣ Server Staff)`)
+      .setAuthor(message.author.username, message.author.displayAvatarURL);
+    message.channel.send(embed).then(msg1=>
+    msg1.react('1️⃣'),
+    msg1.react('2️⃣'),
+    msg1.delete(90000));
+
+    const filter = (reaction, user) => {
+      return ['1️⃣', '2️⃣'].includes(reaction.emoji.name) && user.id === message.author.id;
+    };
+
+    message.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+    .then(collected => {
+      const reaction = collected.first();
+  
+      if (reaction.emoji.name === '1️⃣') {
+        reaction.remove();
+        let embed = new Discord.RichEmbed()
+          .setColor('GREEN')
+          .setTimestamp()
+          .setFooter(`Developer Application`)
+          .setDescription('The application has started in your direct messages, please answer honestly.')
+          .setAuthor(message.author.username, message.author.displayAvatarURL)
+        message.channel.send(embed);
+
+        let finish = new Discord.RichEmbed()
+          .setColor('GREEN')
+          .setTimestamp()
+          .setFooter('Application Complete')
+          .setAuthor(message.author.username, message.author.displayAvatarURL)
+
+        let embeddm = new Discord.RichEmbed()
+          .setColor('GREEN')
+          .setTimestamp()
+          .setFooter(`Developer Application`)
+          .setDescription(`Question One\nHow old are you?`)
+          .setAuthor(message.author.username, message.author.displayAvatarURL)
+        message.author.send(embeddm);
+        const collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, { time: 30000 });
+        collector.on('collect', (msg1) => {
+          if(isNaN(msg1)) {
+            let embed = new Discord.RichEmbed()
+              .setColor('RED')
+              .setTimestamp()
+              .setFooter('Developer Application')
+              .setDescription(`Your age has to be a number.`);
+            message.author.send(embed);
+          } else {
+            finish.addField('Age', msg1.content)
+            message.author.send(finish);
+          }
+        });
+      } else {
+        message.reply('you reacted with a thumbs down.');
+      }
+    })
+
+  }
+
 });
 
 client.login(process.env.TOKEN);
