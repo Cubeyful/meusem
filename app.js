@@ -142,6 +142,18 @@ client.on("message", async (message) => {
       message.channel.send(embed);
     }
 
+    if(message.content == prefix + 'prune') {
+      if(!message.member.roles.has("name", "Ownership")) return;
+      if(args.length==0 || args.length>1) {
+        message.channel.send('Please give a number to prune')
+      }
+      if(isNaN(args[0])) {
+        message.channel.send('Please give a number to prune')
+      }
+      message.channel.bulkDelete(args[0]);
+      message.channel.send('done');
+    }
+
 });
 
 client.login(process.env.TOKEN);
