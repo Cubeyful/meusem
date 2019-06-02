@@ -70,11 +70,6 @@ client.on("message", async (message) => {
   //   client.emit('guildMemberAdd', message.member || await message.guild.fetchMember(message.author));
   // }
 
-  client.setInterval((message) => {
-    let channel = message.guild.channels.find("id", "584480936477851720")
-    channel.bulkDelete(5000);
-   }, 150000/4);
-
   if(message.content == prefix + 'application') {
     let embed = new Discord.RichEmbed()
       .setColor('YELLOW')
@@ -83,7 +78,7 @@ client.on("message", async (message) => {
       .setDescription(`1️⃣ Developer)\n2️⃣ Server Staff)`)
       .setAuthor(message.author.username, message.author.displayAvatarURL);
     message.channel.send(embed)
-      .then(msg1=>msg1.react('1️⃣'));
+    message.react('1️⃣')
 
     const filter = (reaction, user) => {
       return ['1️⃣'].includes(reaction.emoji.name) && user.id === message.author.id;
