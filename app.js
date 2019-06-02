@@ -77,8 +77,7 @@ client.on("message", async (message) => {
       .setFooter('Application Handler')
       .setDescription(`◀ Developer)`)
       .setAuthor(message.author.username, message.author.displayAvatarURL);
-    message.channel.send(embed)
-    message.react('◀')
+    message.channel.send(embed).then(msg1=>msg1.react('◀'));
 
     const filter = (reaction, user) => {
       return ['◀'].includes(reaction.emoji.name) && user.id === message.author.id;
@@ -112,8 +111,8 @@ client.on("message", async (message) => {
           .setAuthor(message.author.username, message.author.displayAvatarURL)
         message.author.send(embeddm);
         const collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, { time: 30000 });
-        collector.on('collect', (msg1) => {
-          if(isNaN(msg1)) {
+        collector.on('collect', (msg2) => {
+          if(isNaN(msg2)) {
             let embed = new Discord.RichEmbed()
               .setColor('RED')
               .setTimestamp()
