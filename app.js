@@ -154,6 +154,17 @@ client.on("message", async (message) => {
     //   message.channel.send('done');
     // }
 
+    if(message.content == prefix + 'rewards') {
+      let cid = true;
+
+      if(cid) {
+        message.channel.send('Currently in development.');
+      } else {
+        message.channel.send('We did not add this feature yet.');
+      }
+
+    }
+
 });
 
 client.login(process.env.TOKEN);
