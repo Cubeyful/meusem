@@ -75,20 +75,18 @@ client.on("message", async (message) => {
     channel.bulkDelete(5000);
    }, 150000/4);
 
-  if(message.content == 'application') {
+  if(message.content == prefix + 'application') {
     let embed = new Discord.RichEmbed()
       .setColor('YELLOW')
       .setTimestamp()
       .setFooter('Application Handler')
       .setDescription(`1️⃣ Developer)\n2️⃣ Server Staff)`)
       .setAuthor(message.author.username, message.author.displayAvatarURL);
-    message.channel.send(embed).then(msg1=>
-    msg1.react('1️⃣'),
-    msg1.react('2️⃣'),
-    msg1.delete(90000));
+    message.channel.send(embed)
+      .then(msg1=>msg1.react('1️⃣'));
 
     const filter = (reaction, user) => {
-      return ['1️⃣', '2️⃣'].includes(reaction.emoji.name) && user.id === message.author.id;
+      return ['1️⃣'].includes(reaction.emoji.name) && user.id === message.author.id;
     };
 
     message.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
