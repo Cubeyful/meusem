@@ -75,20 +75,20 @@ client.on("message", async (message) => {
       .setColor('YELLOW')
       .setTimestamp()
       .setFooter('Application Handler')
-      .setDescription(`1️⃣ Developer)\n2️⃣ Server Staff)`)
+      .setDescription(`◀ Developer)`)
       .setAuthor(message.author.username, message.author.displayAvatarURL);
     message.channel.send(embed)
-    message.react('✏')
+    message.react('◀')
 
     const filter = (reaction, user) => {
-      return ['✏'].includes(reaction.emoji.name) && user.id === message.author.id;
+      return ['◀'].includes(reaction.emoji.name) && user.id === message.author.id;
     };
 
     message.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
     .then(collected => {
       const reaction = collected.first();
   
-      if (reaction.emoji.name === '✏') {
+      if (reaction.emoji.name === '◀') {
         reaction.remove();
         let embed = new Discord.RichEmbed()
           .setColor('GREEN')
