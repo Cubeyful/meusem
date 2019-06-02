@@ -77,8 +77,8 @@ client.on("message", async (message) => {
       .setFooter('Application Handler')
       .setDescription(`◀ Developer)`)
       .setAuthor(message.author.username, message.author.displayAvatarURL);
-    message.channel.send(embed)
-      .then(message1 => message1.react('◀'))
+    message.channel.send(embed);
+    message.react('◀')
 
     const filter = (reaction, user) => {
       return ['◀'].includes(reaction.emoji.name) && user.id === message.author.id;
