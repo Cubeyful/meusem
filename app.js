@@ -173,7 +173,7 @@ client.on("message", async (message) => {
        .setFooter('Review')
       message.channel.send(embed);
 
-      if(args.length != 0) {
+      if(args.length != 1) {
         let error = new Discord.RichEmbed()
          .setColor('RED')
          .setDescription('You have to use no arguments for this command')
@@ -204,7 +204,7 @@ client.on("message", async (message) => {
                 .setColor('GREEN')
                 .setDescription(msg + "\n\n"+ arg.join(""))
                 .setTimestamp()
-                .setFooter('Review');
+                .setFooter(message.author.username, message.author.displayAvatarURL);
               channel.send(finish);
             });
           }
@@ -227,7 +227,7 @@ client.on("message", async (message) => {
                 .setColor('GREEN')
                 .setDescription(msg + "\n\n"+ arg.join(" "))
                 .setTimestamp()
-                .setFooter('Review');
+                .setFooter(message.author.username, message.author.displayAvatarURL);
               channel.send(finish);
             });
           }
@@ -250,7 +250,7 @@ client.on("message", async (message) => {
                 .setColor('GREEN')
                 .setDescription(msg + "\n\n"+ arg.join(" "))
                 .setTimestamp()
-                .setFooter('Review');
+                .setFooter(message.author.username, message.author.displayAvatarURL);
               channel.send(finish);
             });
           }
@@ -273,7 +273,7 @@ client.on("message", async (message) => {
                 .setColor('GREEN')
                 .setDescription(msg + "\n\n"+ arg.join(" "))
                 .setTimestamp()
-                .setFooter('Review');
+                .setFooter(message.author.username, message.author.displayAvatarURL);
               channel.send(finish);
             });
           }
@@ -296,7 +296,7 @@ client.on("message", async (message) => {
                 .setColor('GREEN')
                 .setDescription(msg + "\n\n"+ arg.join(" "))
                 .setTimestamp()
-                .setFooter('Review');
+                .setFooter(message.author.username, message.author.displayAvatarURL);
               channel.send(finish);
             });
           }
