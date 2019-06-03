@@ -173,7 +173,7 @@ client.on("message", async (message) => {
        .setFooter('Review')
       message.channel.send(embed);
 
-      if(args.length != 1 || args.length != 0) {
+      if(args.length <= 1) {
         let error = new Discord.RichEmbed()
          .setColor('RED')
          .setDescription('You have to use no arguments for this command')
