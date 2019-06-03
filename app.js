@@ -173,7 +173,7 @@ client.on("message", async (message) => {
        .setFooter('Review')
       message.channel.send(embed);
 
-      if(args.length <= 1) {
+      if(args.length != 1 || args.length != 0) {
         let error = new Discord.RichEmbed()
          .setColor('RED')
          .setDescription('You have to use no arguments for this command')
@@ -181,7 +181,6 @@ client.on("message", async (message) => {
          .setFooter('Error');
         message.channel.send(error);
       } else {
-        message.channel.send(embed);
         const collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, { time: 30000 });
         collector.on('collect', async(msg1) => {
           const collector1 = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, { time: 30000 });
