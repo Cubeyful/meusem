@@ -290,7 +290,7 @@ client.on("message", async (message) => {
 
               let channel = message.guild.channels.find("name", "reviews")
 
-              let arg = msg1.content.split(" ").slice(1);
+              let arg = msg1.content.split(" ");
 
               let finish = new Discord.RichEmbed()
                 .setColor('GREEN')
