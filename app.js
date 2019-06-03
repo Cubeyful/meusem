@@ -165,6 +165,145 @@ client.on("message", async (message) => {
 
     }
 
+    if(message.content == prefix + 'review') {
+      let embed = new Discord.RichEmbed()  
+       .setColor('GREEN')
+       .setDescription('How many stars would you like to rate? (1-5)')
+       .setTimestamp()
+       .setFooter('Review')
+      message.channel.send(embed);
+
+      if(args.length != 0) {
+        let error = new Discord.RichEmbed()
+         .setColor('RED')
+         .setDescription('You have to use no arguments for this command')
+         .setTimestamp()
+         .setFooter('Error');
+        message.channel.send(error);
+      } else {
+        message.channel.send(embed);
+        const collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, { time: 30000 });
+        collector.on('collect', async(msg1) => {
+          const collector1 = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, { time: 30000 });
+
+          if(msg1.content == '1' || msg1.content == 'one') {
+            let rate = new Discord.RichEmbed()
+              .setColor('GREEN')
+              .setDescription('Describe why you gave one star.')
+              .setTimestamp()
+              .setFooter('Rate');
+            message.channel.send(rate);
+            collector1.on('collect', async(msg2) => {
+              let msg = "⭐";
+
+              let channel = message.guild.channels.find("name", "reviews")
+
+              let arg = msg1.content.split(" ").slice(1);
+
+              let finish = new Discord.RichEmbed()
+                .setColor('GREEN')
+                .setDescription(msg + "\n\n"+ arg.join(""))
+                .setTimestamp()
+                .setFooter('Review');
+              channel.send(finish);
+            });
+          }
+
+          if(msg1.content == '2' || msg1.content == 'two') {
+            let rate = new Discord.RichEmbed()
+              .setColor('GREEN')
+              .setDescription('Describe why you gave two stars.')
+              .setTimestamp()
+              .setFooter('Rate');
+            message.channel.send(rate);
+            collector1.on('collect', async(msg2) => {
+              let msg = "⭐⭐";
+
+              let channel = message.guild.channels.find("name", "reviews")
+
+              let arg = msg1.content.split(" ").slice(1);
+
+              let finish = new Discord.RichEmbed()
+                .setColor('GREEN')
+                .setDescription(msg + "\n\n"+ arg.join(" "))
+                .setTimestamp()
+                .setFooter('Review');
+              channel.send(finish);
+            });
+          }
+
+          if(msg1.content == '3' || msg1.content == 'three') {
+            let rate = new Discord.RichEmbed()
+              .setColor('GREEN')
+              .setDescription('Describe why you gave three stars')
+              .setTimestamp()
+              .setFooter('Rate');
+            message.channel.send(rate);
+            collector1.on('collect', async(msg2) => {
+              let msg = "⭐⭐⭐";
+
+              let channel = message.guild.channels.find("name", "reviews")
+
+              let arg = msg1.content.split(" ").slice(1);
+
+              let finish = new Discord.RichEmbed()
+                .setColor('GREEN')
+                .setDescription(msg + "\n\n"+ arg.join(" "))
+                .setTimestamp()
+                .setFooter('Review');
+              channel.send(finish);
+            });
+          }
+
+          if(msg1.content == '4' || msg1.content == 'four') {
+            let rate = new Discord.RichEmbed()
+              .setColor('GREEN')
+              .setDescription('Describe why you gave four stars')
+              .setTimestamp()
+              .setFooter('Rate');
+            message.channel.send(rate);
+            collector1.on('collect', async(msg2) => {
+              let msg = "⭐⭐⭐⭐";
+
+              let channel = message.guild.channels.find("name", "reviews")
+
+              let arg = msg1.content.split(" ").slice(1);
+
+              let finish = new Discord.RichEmbed()
+                .setColor('GREEN')
+                .setDescription(msg + "\n\n"+ arg.join(" "))
+                .setTimestamp()
+                .setFooter('Review');
+              channel.send(finish);
+            });
+          }
+
+          if(msg1.content == '5' || msg1.content == 'five') {
+            let rate = new Discord.RichEmbed()
+              .setColor('GREEN')
+              .setDescription('Describe why you gave five stars')
+              .setTimestamp()
+              .setFooter('Rate');
+            message.channel.send(rate);
+            collector1.on('collect', async(msg2) => {
+              let msg = "⭐⭐⭐⭐⭐";
+
+              let channel = message.guild.channels.find("name", "reviews")
+
+              let arg = msg1.content.split(" ").slice(1);
+
+              let finish = new Discord.RichEmbed()
+                .setColor('GREEN')
+                .setDescription(msg + "\n\n"+ arg.join(" "))
+                .setTimestamp()
+                .setFooter('Review');
+              channel.send(finish);
+            });
+          }
+        });
+      }
+    }
+
 });
 
 client.login(process.env.TOKEN);
